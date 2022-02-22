@@ -1,0 +1,9 @@
+body{
+  margin-top: 20px;
+  background-color: lightyellow;
+}
+.sidebar{
+  background-color: #333;
+  color: white;
+  height: 100%;
+}

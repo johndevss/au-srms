@@ -1,0 +1,168 @@
+<style type="text/css">
+	/*basically eto yung foundation ng css naten*/
+.aulogo {
+		position: absolute;
+		height: 50px;
+		width: 50px;
+		margin-left: 5px;
+		margin-top: 10px;
+	}
+
+	/*dito ilagay yung deisgn na gusto sa heading*/
+	.heading {
+		margin-top: 0px; 
+		margin-left: 60px;
+		background-color: #f4f4f4;
+		padding: .1px;
+	}
+
+	/*eto yung nagtatanggal ng space sa header*/
+	body {
+		margin: 0px;
+		min-height: 100vh;
+		background-color: white;
+	}
+	/*eto yung design ng mga nasa loob*/
+	.navigation {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 60px;
+		height: 100%;
+		background-color: #004EA8;
+		transition: 0.5%;
+		overflow: hidden;
+	}
+	/*eto yung nagpapalaki ng sidebar pag nag hover yung mouse
+	.navigation:hover {
+		width: 150px;
+	}/*
+
+	/*nagtatanggal ng bullet list para sa nav bar*/
+	.nav {
+		list-style-type: none;
+	}
+
+	/*nagbibigay ng kulay pag pinindot yung mga icons*/
+	.active {
+		/*padding: 20px 40px 15px;*/
+		margin: 0px;
+		background-color: white;
+		margin-left: -30px;
+		padding: 10px;
+		padding-top: 30px;
+		padding-right: 40px;
+		width: 10px;
+		outline: none;
+		border-radius: 20%;
+	}
+	.threeLines {
+		margin-top: 2px;
+		height: 30px;
+		width: 30px;
+		margin-left: 10px;
+		position: absolute;
+	}
+	.text {
+		margin-left: 70px;
+		font-family: 'Public Sans', sans-serif;
+	}
+	.icon:hover { 
+		filter: brightness(0) invert(1);
+	}
+
+	/*admin_dashboard & teacher_Dashboard*/
+	.date {
+		position: absolute;
+		border-color: yellow;
+		border-style: solid;
+		text-align: center;
+		border-width: 5px;
+		box-sizing: border-box;
+		width: 250px;
+		height: 100px;
+		margin-left: 1100px;
+		font-family: 'Public Sans', sans-serif;
+		border-radius: 10%;
+	}
+	.content-heading, .content {
+		margin-top: 70px;
+		margin-left: 75px;
+		font-family: 'Public Sans', sans-serif;
+	}
+	.content {
+		margin-top: -10px;
+		border-style: solid;
+		box-sizing: border-box;
+		height: auto;
+		width: 600px;
+		border-radius: 5%;
+		border-width: 5px;
+		text-align: center;
+	}
+	.input-tab {
+		position: absolute;
+	}
+
+	/*add.php, list.php, teacher.php, section.php*/
+	.button {
+		margin-left: 130px;
+		margin-top: 70px;
+	}
+	.add_fac-btn {
+		font-size: 50px;
+		font-family: 'Public Sans', sans-serif;
+		padding: 14px 80px;
+		border-radius: 30px;
+		background-color: #f4f4f4;
+	}
+	.add_stdnt-btn {
+		margin-top: 50px;
+		font-size: 50px;
+		font-family: 'Public Sans', sans-serif;
+		padding: 14px 60px;
+		border-radius: 30px;
+		background-color: #f4f4f4;
+	}
+
+	.fac-btn {
+		font-size: 50px;
+		font-family: 'Public Sans', sans-serif;
+		padding: 14px 75px;
+		border-radius: 30px;
+		background-color: #f4f4f4;
+	}
+	.stdnt-btn {
+		margin-top: 50px;
+		font-size: 50px;
+		font-family: 'Public Sans', sans-serif;
+		padding: 14px 60px;
+		border-radius: 30px;
+		background-color: #f4f4f4;
+	}
+
+	/*addpersonnel.php & addstudent.php*/
+	.main {
+	margin-left: 75px;
+    font-family: 'Public Sans', sans-serif;
+	}
+	.back-btn {
+    height: 25px;
+    width: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    position: fixed;
+    }
+	.inner-heading{
+	margin-left: 40px;
+    color: #DA291C;
+    }
+	.input-container {
+	margin-left: 30px;
+	margin-top: 50px;
+	}
+	
+	.examTable {
+		background-color: lightyellow;
+	}
+	</style>
