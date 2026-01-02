@@ -73,7 +73,7 @@ require_once "../../../database/config.php";
           </li>
           <li>
             <!--logout-->
-            <a href="logout.php">
+            <a href="/au-srms/public/logout.php">
               <span class="icon"><img class="not-active" src="../../../public/assets/images/logout.png" title="Logout"></span>
             </a>
           </li>
