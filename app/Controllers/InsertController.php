@@ -142,6 +142,27 @@ function userEditInsert() {
     mysqli_close($conn);
 }
 
+function insertAnnouncement() {
+    global $conn;
+    $announcement = mysqli_real_escape_string($conn, $_POST['announcement'] ?? '');
+
+    if ($announcement === '') {
+        echo "Error: Announcement text is required.";
+        exit;
+    }
+
+    $sql = "INSERT INTO announcements (`announcement`) VALUES ('$announcement')";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: ../Views/admin/admin_dashboard.php');
+        exit;
+    } else {
+        echo "Error: Could not execute query. " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
 // Call if action is set
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'insertFaculty') {
@@ -152,6 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         insertSubject();
     } elseif ($_POST['action'] === 'userEditInsert') {
         userEditInsert();
+    } elseif ($_POST['action'] === 'insertAnnouncement') {
+        insertAnnouncement();
     }
 }
 

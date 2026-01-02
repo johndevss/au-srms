@@ -56,10 +56,11 @@ require_once "../../../database/config.php";
     </div>
     
     <div class="content-heading">
-    	<form autocomplete="off" class="input-tab" action="insert-announcement.php">
+    	<form autocomplete="off" class="input-tab" action="/au-srms/app/Controllers/InsertController.php" method="POST">
+    		<input type="hidden" name="action" value="insertAnnouncement">
     		<label>Make announcements:</label>
-    		<input class="tab" type="text" name="announce">
-    		<input type="submit">
+    		<input class="tab" type="text" name="announcement" required>
+    		<input type="submit" value="Post">
     	</form>
     	<br> <br> <br>
     </div>
