@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once "../../database/config.php";
 session_start();
 
@@ -109,12 +105,30 @@ function insertStudent() {
     mysqli_close($conn);
 }
 
-// Only call the function if POST and action is set
+function insertSubject() {
+    global $conn;
+    $subject_name = mysqli_real_escape_string($conn, $_POST['subject_name'] ?? '');
+
+    $sql = "INSERT INTO subjects (`subject_name`) VALUES ('$subject_name')";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: ../Views/admin/subjects.php');
+        exit;
+    } else {
+        echo "Error: Could not execute query. ".mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
+// Call if action is set
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'insertFaculty') {
         insertFaculty();
     } elseif ($_POST['action'] === 'insertStudent') {
         insertStudent();
+    } elseif ($_POST['action'] === 'insertSubject') {
+        insertSubject();
     }
 }
 
