@@ -14,7 +14,7 @@
     $username = $password = "";
     $username_err = $password_err = $login_err = "";
 
-    handleLogin($conn, $username, $password, $username_err, $password_err, $login_err);
+    //handleLogin($conn, $username, $password, $username_err, $password_err, $login_err);
     
 ?>
  
