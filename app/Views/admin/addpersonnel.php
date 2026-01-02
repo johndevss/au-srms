@@ -1,5 +1,6 @@
 <?php
-require_once "../../../database/config.php";
+	require_once "../../../database/config.php";
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -55,91 +56,85 @@ require_once "../../../database/config.php";
 		<h1 class="inner-heading">Faculty Management <img class="back-btn" style="position: relative;" src="/au-srms/public/assets/images/right-arrow.png"> Faculty Registration</h1>
 		<p>Please fill in the required information for registration.</p>
 
-	<!--eto ung nagcoconnect sa database-->
-	<div class="input-container">
-		<h1>Personal Information</h1>
-		<form action="insert_personnel.php" method="POST">
-			<!--eto yung tatlong kailangan para sa student-->
-			<label for="firstName">First Name:</label>
-			<input type="text" name="firstName" required=""> 
-			<br> <br>
-			<label for="middleName">Middle Name:</label>
-			<input type="text" name="middleName" placeholder="Optional">
-			<br> <Br>
-			<label for="lastName">Last Name:</label>
-			<input type="text" name="lastName" required=""> 
-			<br> <br>
-			<label>Sex:</label>
-			<input type="radio" name="sex" required="" value="Male">Male <input type="radio" name="sex" required="" value="Female">Female <input type="radio" name="sex" required="" value="Other">Other
-      <br> <br>
-      <label>Birthday</label>
-      <input type="date" name="bday">
-      <br> <br>
-            <!--dito ang email-->
-			<label for="email">Email:</label>
-			<input  type="email" name="email" id="email" required="">
-			<br> <br>
-			<!--dito ang mobile number ng teacher-->
-			<label for="contact_num">Mobile:</label>
-			<input type="text" name="contact_num" id="contact_num" required="" maxlength="11">
-			<br> <br>
-      <label>Mother's Name</label>
-      <input type="text" name="stdnt_motherName" placeholder="Optional">
-      <br> <br>
-      <label>Mother's Contact Number:</label>
-      <input type="text" name="motherContactNum" placeholder="Optional" maxlength="11">
-      <br><br>
-      <label>Father's Name</label>
-      <input type="text" name="stdnt_fatherName" placeholder="Optional">
-      <br> <br>
-      <label>Father's Contact Number:</label>
-      <input type="text" name="fatherContactNum" placeholder="Optional" maxlength="11">
-      <br> <br>
-      <label for="Strand">Strand</label>
-      <select name="strand" required="">
-        <option>---</option>
-        <option  name="strand1" value="ICT">ICT</option>
-        <option  name="strand2" value="STEM">STEM</option>
-        <option  name="strand3" value="ABM">ABM</option>
-        <option  name="strand4" value="GAS">GAS</option>
-        <option  name="strand5" value="HUMSS">HUMSS</option>
-      </select>
-      <br> <br> 
-			<label for="section">Advisory:</label>
-        <select name="advisory_class" required="">
-        <option>---</option>
-        <option  name="advisory_class1" value="1A">1A</option>
-        <option  name="advisory_class2" value="2A">2A</option>
-        <option  name="advisory_class3" value="1P">1P</option>
-    </select>
-			<br> <br>
-			<label>Subject:</label>
-			<select name="subject_id" id="subject" required="">
-        <option>---</option>
-        <?php
-        $query = $conn->query("SELECT * FROM `subjects`") or die(mysqli_error());
-              while($f_query = $query->fetch_array()){
-        echo '<option value ='.$f_query['subject_id'].'>'.$f_query['subject_name'].'</option>';    
-        }    
-        ?>
-      </select>
-			<br> <br>
-			<label for="Username">Username:</label>
-			<input  type="text" name="username" id="username" required="">
-			<br> <br>
-			<label for="Password">Password:</label>
-			<input type="password" name="password" id="password" required="">
-			<br> <br>
-			<input type="submit" class="btn btn-primary"value="Register">
-
-		</form>
-		<br> 
+		<div class="input-container">
+			<h1>Personal Information</h1>
+			<form action="../../../app/Controllers/InsertController.php" method="POST">
+				<input type="hidden" name="action" value="insertFaculty">
+				<label for="firstName">First Name:</label>
+				<input type="text" name="firstName" required=""> 
+				<br> <br>
+				<label for="middleName">Middle Name:</label>
+				<input type="text" name="middleName" placeholder="Optional">
+				<br> <Br>
+				<label for="lastName">Last Name:</label>
+				<input type="text" name="lastName" required=""> 
+				<br> <br>
+				<label>Sex:</label>
+				<input type="radio" name="sex" required="" value="Male">Male <input type="radio" name="sex" required="" value="Female">Female <input type="radio" name="sex" required="" value="Other">Other
+				<br> <br>
+				<label>Birthday</label>
+				<input type="date" name="bday">
+				<br> <br>
+				<label for="email">Email:</label>
+				<input  type="email" name="email" id="email" required="">
+				<br> <br>
+				<label for="contact_num">Mobile:</label>
+				<input type="text" name="contact_num" id="contact_num" required="" maxlength="11">
+				<br> <br>
+				<label>Mother's Name</label>
+				<input type="text" name="stdnt_motherName" placeholder="Optional">
+				<br> <br>
+				<label>Mother's Contact Number:</label>
+				<input type="text" name="motherContactNum" placeholder="Optional" maxlength="11">
+				<br><br>
+				<label>Father's Name</label>
+				<input type="text" name="stdnt_fatherName" placeholder="Optional">
+				<br> <br>
+				<label>Father's Contact Number:</label>
+				<input type="text" name="fatherContactNum" placeholder="Optional" maxlength="11">
+				<br> <br>
+				<label for="Strand">Strand</label>
+				<select name="strand" required="">
+					<option>---</option>
+					<option  name="strand1" value="ICT">ICT</option>
+					<option  name="strand2" value="STEM">STEM</option>
+					<option  name="strand3" value="ABM">ABM</option>
+					<option  name="strand4" value="GAS">GAS</option>
+					<option  name="strand5" value="HUMSS">HUMSS</option>
+				</select>
+				<br> <br> 
+						<label for="section">Advisory:</label>
+					<select name="advisory_class" required="">
+					<option>---</option>
+					<option  name="advisory_class1" value="1A">1A</option>
+					<option  name="advisory_class2" value="2A">2A</option>
+					<option  name="advisory_class3" value="1P">1P</option>
+				</select>
+						<br> <br>
+				<label>Subject:</label>
+				<select name="subject_id" id="subject" required="">
+					<option>---</option>
+					<?php
+					$query = $conn->query("SELECT * FROM `subjects`") or die(mysqli_error());
+						while($f_query = $query->fetch_array()){
+					echo '<option value ='.$f_query['subject_id'].'>'.$f_query['subject_name'].'</option>';    
+					}    
+					?>
+				</select>
+				<br> <br>
+				<label for="Username">Username:</label>
+				<input  type="text" name="username" id="username" required="">
+				<br> <br>
+				<label for="Password">Password:</label>
+				<input type="password" name="password" id="password" required="">
+				<br> <br>
+				<input type="submit" class="btn btn-primary"value="Register">
+			</form>
+			<br> 
+		</div>
 	</div>
-	</div>
-    </div>
-    </div>
-
-
+</div>
+</div>
 
 </body>
 </html>
