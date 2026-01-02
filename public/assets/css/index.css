@@ -1,0 +1,50 @@
+body {
+  font-family: "Public Sans", sans-serif;
+  background-color: lightgray;
+}
+h2 {
+  font-size: 30px;
+}
+input {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+.login-logo {
+  width: 100px;
+  height: 100px;
+}
+.c1 {
+  background-color: #004ea8;
+  height: 50px;
+}
+.c2 {
+  position: relative;
+  top: 12.5px;
+  background-color: #da291c;
+  height: 25px;
+}
+.form {
+  margin-top: 10%;
+  margin-right: 25%;
+  margin-left: 24.5%;
+  width: 50%;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+}
+.submit {
+  background-color: #004ea8;
+  color: white;
+  width: 25%;
+}
+.invalid-feedback {
+  color: red;
+}
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
