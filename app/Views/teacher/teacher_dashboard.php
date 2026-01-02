@@ -10,13 +10,14 @@ session_start();
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/teacher_dashboard.css">
 	<title>Admin</title>
 </head>
 <body>
 	<div class="heading">
     <header>
-      <img class="threeLines" src="images/three_lines.png">
+      <img class="threeLines" src="/au-srms/public/assets/images/three_lines.png">
       <h1 class="text">Student Result Management System</h1>
     </header>
   </div>
@@ -29,39 +30,38 @@ session_start();
 
 	<div class="navigation">
 		<nav>
-			<a style="text-decoration: none;" href="teacher_dashboard.php">
-			<img class="aulogo"; src="images/aulogo.png"></a>
+			<a style="text-decoration: none;" href="./teacher_dashboard.php">
+			<img class="aulogo"; src="/au-srms/public/assets/images/aulogo.png"></a>
 			<br> <br> <br>
 
         <ul class="nav">
         	<li>
         		<!--Dashboard-->
         		<a href="#">
-        			<span class="active"><img class="active-icon" src="images/four_squares.png" title="Dashboard"></span>
+        			<span class="active"><img class="active-icon" src="/au-srms/public/assets/images/four_squares.png" title="Dashboard"></span>
         		</a>
         	</li>
         	<li>
         		<!--list-->
-        		<a href="class_list.php">
-        			<span class="icon"><img class="not-active" src="images/list.png" title="Management"></span>
+        		<a href="./class_list.php">
+        			<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/list.png" title="Management"></span>
         		</a>
         	</li>
           <li>
             <!--logout-->
             <a href="/au-srms/public/logout.php">
-              <span class="icon"><img class="not-active" src="images/logout.png" title="Logout"></span>
+              <span class="icon"><img class="not-active" src="/au-srms/public/assets/images/logout.png" title="Logout"></span>
             </a>
           </li>
         </ul>
         </nav>
     </div>
-    
+    <div class="content-heading"></div>
     <div class="content">
     	<h1>Announcements</h1>
       <table id = "table" class = "table-bordered">
         <tbody>
           <?php
-            include_once "database/config.php";
             $query = $conn->query("SELECT * FROM `announcements` ") or die(mysqli_error());
             while($f_query = $query->fetch_array()){
           ?>

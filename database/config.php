@@ -1,16 +1,11 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'au-srms');
- 
-/* Attempt to connect to MySQL database */
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Check connection
-if($conn === false){
+$server = getenv('DB_HOST') ?: 'localhost';
+$user   = getenv('DB_USER') ?: 'root';
+$pass   = getenv('DB_PASS') ?: '';
+$name   = getenv('DB_NAME') ?: 'au-srms';
+
+$conn = mysqli_connect($server, $user, $pass, $name);
+if ($conn === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
