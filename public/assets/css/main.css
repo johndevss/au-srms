@@ -124,20 +124,21 @@
 		background-color: #f4f4f4;
 	}
 
-	.fac-btn {
-		font-size: 50px;
-		font-family: 'Public Sans', sans-serif;
-		padding: 14px 75px;
-		border-radius: 30px;
-		background-color: #f4f4f4;
+	.fac-btn, .stdnt-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #004ea8;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 8px 0;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
 	}
-	.stdnt-btn {
-		margin-top: 50px;
-		font-size: 50px;
-		font-family: 'Public Sans', sans-serif;
-		padding: 14px 60px;
-		border-radius: 30px;
-		background-color: #f4f4f4;
+	.fac-btn:hover, .stdnt-btn:hover {
+		background: #003366;
 	}
 
 	/*addpersonnel.php & addstudent.php*/

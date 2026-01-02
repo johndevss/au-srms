@@ -22,7 +22,7 @@ require_once "../../../database/config.php";
 	
     <div class="date">
 		<h3><?php date_default_timezone_set("Asia/Singapore"); 
-		echo date("F d, Y");?> <br> </h3>
+		echo date("F d, Y");?></h3>
 		<?php echo date("h:iA");?>
     </div>
 
@@ -32,38 +32,32 @@ require_once "../../../database/config.php";
 			<img class="aulogo"; src="/au-srms/public/assets/images/aulogo.png"></a>
 			<br> <br> <br>
 
-        <ul class="nav">
-        	<li>
-        		<!--Dashboard-->
-        		<a href="#">
-        			<span class="active"><img class="active-icon" src="/au-srms/public/assets/images/four_squares.png" title="Dashboard"></span>
-        		</a>
-        	</li>
-        	<li>
-        		<!--list-->
-        		<a href="list.php">
-        			<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/list.png" title="Management"></span>
-        		</a>
-        	</li>
-        	<li>
-        		<!--profile?-->
-        		<a href="#">
-        			<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/manage.png"></span>
-        		</a>
-        	</li>
-        	<li>
-        		<!--settings-->
-        		<a href="#">
-        			<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/settings.png"></span>
-        		</a>
-        	</li>
-        	<li>
-        		<!--logout-->
-        		<a href="logout.php">
-        			<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/logout.png" title="Logout"></span>
-        		</a>
-        	</li>
-        </ul>
+			<ul class="nav">
+				<li>
+					<!--Dashboard-->
+					<a href="#">
+						<span class="active"><img class="active-icon" src="/au-srms/public/assets/images/four_squares.png" title="Dashboard"></span>
+					</a>
+				</li>
+				<li>
+					<!--list-->
+					<a href="./list.php">
+						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/list.png" title="Management"></span>
+					</a>
+				</li>
+				<li>
+					<!--profile?-->
+					<a href="#">
+						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/manage.png"></span>
+					</a>
+				</li>
+				<li>
+					<!--logout-->
+					<a href="logout.php">
+						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/logout.png" title="Logout"></span>
+					</a>
+				</li>
+			</ul>
         </nav>
     </div>
     
