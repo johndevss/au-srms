@@ -11,33 +11,6 @@ require_once "../../../database/config.php";
 	<link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/main.css">
 	<title>Admin</title>
-	<style type="text/css">
-	/*dito yung design sa logo*/
-	.aulogo {
-		position: absolute;
-		height: 50px;
-		width: 50px;
-		margin-left: 5px;
-		margin-top: 10px;
-	}
-	.active-icon {
-		width: 30px; 
-		height: 30px; 
-		margin-left: -5px;
-		margin-top: 75px;
-	}
-	.not-active {
-		width: 30px; 
-		height: 30px; 
-		margin-left: -25px; 
-		margin-top: 75px;
-	}
-	label {
-		display: inline-block;
-		font-weight: bold;
-	}
-
-	</style>
 </head>
 <body>
 	<div class="heading">
