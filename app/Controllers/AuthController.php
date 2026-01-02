@@ -80,7 +80,7 @@
                                     $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error()); 
                                     if (mysqli_query($conn, $query)) {
 
-                                    header("location: teacher_dashboard.php");
+                                    header("location: /au-srms/app/Views/teacher/teacher_dashboard.php");
                                 }
                             }
                                 // pag 0 naman student lang at dalhin ito sa user page lang
@@ -99,7 +99,7 @@
                                     $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error()); 
                                     if (mysqli_query($conn, $query)) {
 
-                                    header("location: student_dashboard.php");
+                                    header("location: /au-srms/app/Views/student/student_dashboard.php");
                                 }
                             }
                                 
