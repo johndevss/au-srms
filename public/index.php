@@ -25,8 +25,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css">
     <title>AU SRMS</title>
 </head>
 <body>
