@@ -36,7 +36,7 @@
     </header>
     
     <div class="form">
-        <img class="login-logo" src="assets/images/aulogo.png">
+        <img class="login-logo" src="/assets/images/aulogo.png">
         <h2>Student Result Management System</h2>
         <hr> <br>
 
