@@ -121,6 +121,27 @@ function insertSubject() {
     mysqli_close($conn);
 }
 
+function userEditInsert() {
+    global $conn;
+    $user_id = mysqli_real_escape_string($conn, $_POST['user_id'] ?? '');
+    $firstName = mysqli_real_escape_string($conn, $_POST['firstName'] ?? '');
+    $middleName = mysqli_real_escape_string($conn, $_POST['middleName'] ?? '');
+    $lastName = mysqli_real_escape_string($conn, $_POST['lastName'] ?? '');
+    $contact_num = mysqli_real_escape_string($conn, $_POST['contact_num'] ?? '');
+    $stdnt_strand = mysqli_real_escape_string($conn, $_POST['stdnt_strand'] ?? '');
+
+    $sql = "UPDATE users SET firstName='$firstName', middleName='$middleName', lastName='$lastName', contact_num='$contact_num', stdnt_strand='$stdnt_strand' WHERE user_id='$user_id'";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: ../Views/admin/section.php');
+        exit;
+    } else {
+        echo "Error: Could not execute query. ".mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
 // Call if action is set
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'insertFaculty') {
@@ -129,6 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         insertStudent();
     } elseif ($_POST['action'] === 'insertSubject') {
         insertSubject();
+    } elseif ($_POST['action'] === 'userEditInsert') {
+        userEditInsert();
     }
 }
 
