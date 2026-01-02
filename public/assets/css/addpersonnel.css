@@ -1,0 +1,39 @@
+	.aulogo {
+		position: absolute;
+		height: 50px;
+		width: 50px;
+		margin-left: 5px;
+		margin-top: 10px;
+	}
+	.active-icon {
+		width: 30px; 
+		height: 30px; 
+		margin-left: -5px;
+		margin-top: 75px;
+	}
+	.not-active {
+		width: 30px; 
+		height: 30px; 
+		margin-left: -25px; 
+		margin-top: 75px;
+	}
+	.back-btn {
+		position: absolute;
+	}
+	input {
+		width: auto;
+		clear: both;
+		background-color: #f4f4f4;
+
+	}
+	select {
+		width: 175px;
+		clear: both;
+		background-color: #f4f4f4;
+	}
+	/*yung inline block yung nag papantay dun sa mga input block*/
+	label {
+		font-weight: bold;
+		display: inline-block;
+		width: 150px;
+	}

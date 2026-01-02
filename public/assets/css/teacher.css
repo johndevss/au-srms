@@ -1,0 +1,45 @@
+  .aulogo {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    margin-left: 5px;
+    margin-top: 10px;
+    /*desgin para sa tables*/
+  }
+  .active-icon {
+    width: 30px; 
+    height: 30px; 
+    margin-left: -5px;
+    margin-top: 75px;
+  }
+  .not-active {
+    width: 30px; 
+    height: 30px; 
+    margin-left: -25px; 
+    margin-top: 75px;
+  }
+  .back-btn {
+    position: absolute;
+  }
+  .tables {
+    margin-left: 80px;
+  }
+  .table-bordered {
+    background-color: lightyellow;
+    margin-left: -1%;
+    border-collapse: separate;
+    border: 1px solid black;
+    border-spacing: 0 15px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    width: 1200px;
+  }
+  th {
+    background-color: burlywood;
+    border: 1px solid black;
+  }
+  td {
+    border: 1px solid black;
+    border-collapse: separate;
+  }
