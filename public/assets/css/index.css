@@ -1,3 +1,5 @@
+@import url('/au-srms/public/assets/css/main.css');
+
 body {
   font-family: "Public Sans", sans-serif;
   background-color: lightgray;
@@ -19,12 +21,16 @@ input {
 .c1 {
   background-color: #004ea8;
   height: 50px;
+  display: block;
+  width: 100%;
 }
 .c2 {
   position: relative;
   top: 12.5px;
   background-color: #da291c;
   height: 25px;
+  display: block;
+  width: 100%;
 }
 .form {
   margin-top: 10%;
