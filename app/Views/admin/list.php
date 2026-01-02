@@ -40,12 +40,6 @@ require_once "../../../database/config.php";
                     </a>
                 </li>
                 <li>
-                    <!--profile?-->
-                    <a href="#">
-                        <span class="icon"><img class="not-active" src="/au-srms/public/assets/images/manage.png"></span>
-                    </a>
-                </li>
-                <li>
                     <!--logout-->
                     <a href="logout.php">
                         <span class="icon"><img class="not-active" src="/au-srms/public/assets/images/logout.png" title="Logout"></span>
