@@ -1,6 +1,5 @@
 <?php
 
-    session_start();
     require_once "../database/config.php"; 
 
     function handleLogin(&$conn, &$username, &$password, &$username_err, &$password_err, &$login_err) {
@@ -56,11 +55,11 @@
                                     $_SESSION["username"] = $username;  
 
 
-                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error()); 
+                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error($conn)); 
                                     if (mysqli_query($conn, $query)) {
 
                                     // Redirect user to welcome page
-                                    header("location: /au-srms/app/Views/admin/admin_dashboard.php");
+                                    header("Location: /");
                                 }
                             }
 
@@ -77,10 +76,10 @@
                                     $_SESSION["strand"] = $strand;
                                     $_SESSION["subject_id"] = $subject_id;
 
-                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error()); 
+                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error($conn)); 
                                     if (mysqli_query($conn, $query)) {
 
-                                    header("location: /au-srms/app/Views/teacher/teacher_dashboard.php");
+                                    header("Location: /");
                                 }
                             }
                                 // pag 0 naman student lang at dalhin ito sa user page lang
@@ -89,17 +88,17 @@
                                     // Store data in session variables
                                     $_SESSION["loggedin"] = true;
                                     $_SESSION["account_id"] = $account_id;
-                                    $_SESSION["access_level"] = 2;
+                                    $_SESSION["access_level"] = 0;
                                     $_SESSION["username"] = $username;
                                     $_SESSION["password"] = $password;
 
                                     $log = "INSERT INTO activity_log (username, action) VALUES ('$username', '$username logged in')";
                                     $res = mysqli_query($conn, $log);
 
-                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error()); 
+                                    $query = ("UPDATE `users` SET `user_systemStatus` = 'Online' WHERE `user_id` = '$user_id'") or die(mysqli_error($conn)); 
                                     if (mysqli_query($conn, $query)) {
 
-                                    header("location: /au-srms/app/Views/student/student_dashboard.php");
+                                    header("Location: /");
                                 }
                             }
                                 
@@ -134,7 +133,7 @@
     }
     $_SESSION = [];
     session_destroy();
-    header("location: index.php");
+    header("Location: /");
     exit;
 }
 

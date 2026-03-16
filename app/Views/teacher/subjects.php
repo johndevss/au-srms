@@ -1,16 +1,15 @@
 <?php
 // Initialize the session
-session_start();
-require_once "database/config.php";
+require_once __DIR__ . "/../../../database/config.php";
  
 /*
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: admin_dashboard.php");
+    header("Location: /");
     exit;
     //checks if the user is admin or not
     if (!isset($_SESSION['access_level']) || ($_SESSION['access_level'] != 1)) {
-    header('Location: teacher_dashboard.php');
+    header("Location: /");
     exit;
   }
 
@@ -26,7 +25,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet">
 <!--nagcoconnect sa css-->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
   <title>Admin</title>
   <style type="text/css">
   /*dito yung design sa logo*/
@@ -79,46 +78,46 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 <body>
   <div class="heading">
   <header>
-    <img class="threeLines" src="images/three_lines.png">
+    <img class="threeLines" src="/assets/images/three_lines.png">
     <h1 class="text">Student Result Management System</h1>
   </header>
     </div>
 
   <div class="navigation">
     <nav>
-      <a style="text-decoration: none;" href="admin_dashboard.php">
-      <img class="aulogo"; src="images/aulogo.png"></a>
+      <a style="text-decoration: none;" href="/">
+      <img class="aulogo"; src="/assets/images/aulogo.png"></a>
       <br> <br> <br>
 
         <ul class="nav">
           <li>
             <!--Dashboard-->
-            <a href="admin_dashboard.php">
-              <span class="icon"><img class="not-active" src="images/four_squares.png" title="Dashboard"></span>
+            <a href="/">
+              <span class="icon"><img class="not-active" src="/assets/images/four_squares.png" title="Dashboard"></span>
             </a>
           </li>
           <li>
             <!--list-->
             <a href="list.php">
-              <span class="active"><img class="active-icon" src="images/list.png" title="Management"></span>
+              <span class="active"><img class="active-icon" src="/assets/images/list.png" title="Management"></span>
             </a>
           </li>
           <li>
             <!--profile?-->
             <a href="#">
-              <span class="icon"><img class="not-active" src="images/manage.png"></span>
+              <span class="icon"><img class="not-active" src="/assets/images/manage.png"></span>
             </a>
           </li>
           <li>
             <!--settings-->
             <a href="#">
-              <span class="icon"><img class="not-active" src="images/settings.png"></span>
+              <span class="icon"><img class="not-active" src="/assets/images/settings.png"></span>
             </a>
           </li>
           <li>
             <!--logout-->
-            <a href="logout.php">
-              <span class="icon"><img class="not-active" src="images/logout.png" title="Logout"></span>
+            <a href="/logout.php">
+              <span class="icon"><img class="not-active" src="/assets/images/logout.png" title="Logout"></span>
             </a>
           </li>
         </ul>
@@ -126,12 +125,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     </div>
 
     <div class="main">
-  <a href="section.php"><img class="back-btn" src="images/left-arrow.png"></a>
-    <h1 class="inner-heading">Section Management <img class="back-btn" style="position: relative;" src="images/right-arrow.png"> Information Communication Technology</h1>
+  <a href="/?page=section"><img class="back-btn" src="/assets/images/left-arrow.png"></a>
+    <h1 class="inner-heading">Section Management <img class="back-btn" style="position: relative;" src="/assets/images/right-arrow.png"> Information Communication Technology</h1>
   <main>
     <div class="tables">
       <label>Select Strand:</label>
-      <a href="section.php"><button style=" margin-left: 1%; font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">Go back</button></a> 
+      <a href="/?page=section"><button style=" margin-left: 1%; font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">Go back</button></a> 
 
       <a href="stem.php"><button style=" margin-left: 2%; font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">STEM</button></a>
 
@@ -156,8 +155,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           </thead>
           <tbody>
             <?php
-            include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='1A'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='1A'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>
@@ -191,8 +189,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           </thead>
           <tbody>
             <?php
-            include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='2A'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='2A'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>
@@ -226,8 +223,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           </thead>
           <tbody>
             <?php
-            include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='1P'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_strand='ICT' AND stdnt_section='1P'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>

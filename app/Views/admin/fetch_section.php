@@ -1,5 +1,5 @@
 <?php
-require_once "../../../database/config.php";
+require_once __DIR__ . "/../../../database/config.php";
 
 $strand = isset($_GET['strand']) ? trim($_GET['strand']) : '';
 $allowed = ['ICT', 'STEM', 'ABM', 'GAS', 'HUMSS'];

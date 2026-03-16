@@ -1,21 +1,41 @@
 <?php
-    /*just render the page
-    require_once "../database/config.php"; 
-    require_once "../app/Controllers/AuthController.php";
-    */
 
-    // Check if the user is already logged in, if yes then redirect him to welcome page
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-        header("location: admin_dashboard.php");
+    session_start();
+    require_once "../database/config.php";
+    require_once "../app/Controllers/AuthController.php";    
+    require_once "../app/Controllers/InsertController.php";
+
+    // Handle POST controller actions first
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+        handleInsert($_POST['action']);
         exit;
     }
- 
-    // Initialize variables
-    $username = $password = "";
-    $username_err = $password_err = $login_err = "";
 
-    //handleLogin($conn, $username, $password, $username_err, $password_err, $login_err);
-    
+    handleLogin($conn, $username, $password, $username_err, $password_err, $login_err);
+
+    // If logged in, route based on access level
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    if($_SESSION["access_level"] == 1) {
+        $page = $_GET["page"] ?? "admin_dashboard";
+        $allowed = ["admin_dashboard", "list", "teacher", "section", "subjects", "addstudent", "addpersonnel", "addsubject", "user_edit", "fetch_section"];
+        if(in_array($page, $allowed)) {
+            include "../app/Views/admin/{$page}.php";
+        }
+    } elseif($_SESSION["access_level"] == 2) {
+        $page = $_GET["page"] ?? "teacher_dashboard";
+        $allowed = ["teacher_dashboard", "class_list", "subjects", "manage_exams"];
+        if(in_array($page, $allowed)) {
+            include "../app/Views/teacher/{$page}.php";
+        }
+    } elseif($_SESSION["access_level"] == 0) {
+        $page = $_GET["page"] ?? "student_dashboard";
+        $allowed = ["student_dashboard", "studentprofile"];
+        if(in_array($page, $allowed)) {
+            include "../app/Views/student/{$page}.php";
+        }
+    }
+    exit;
+}
 ?>
  
 <!DOCTYPE html>

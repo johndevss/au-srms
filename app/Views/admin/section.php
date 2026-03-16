@@ -1,6 +1,6 @@
 <?php
 // Initialize the session
-require_once "../../../database/config.php";
+require_once __DIR__ . "/../../../database/config.php";
  
 ?>
 
@@ -11,12 +11,12 @@ require_once "../../../database/config.php";
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../../../public/assets/css/main.css">
-  <link rel="stylesheet" type="text/css" href="../../../public/assets/css/section.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/section.css">
   <script>
     async function loadStrand(strand) {
       try {
-        const response = await fetch(`fetch_section.php?strand=${encodeURIComponent(strand)}`);
+        const response = await fetch(`/?page=fetch_section&strand=${encodeURIComponent(strand)}`);
         if (!response.ok) {
           throw new Error('Failed to load data');
         }
@@ -47,34 +47,34 @@ require_once "../../../database/config.php";
 <body>
   <div class="heading">
     <header>
-      <img class="threeLines" src="../../../public/assets/images/three_lines.png">
+      <img class="threeLines" src="/assets/images/three_lines.png">
       <h1 class="text">Student Result Management System</h1>
     </header>
   </div>
 
   <div class="navigation">
     <nav>
-      <a style="text-decoration: none;" href="./admin_dashboard.php">
-      <img class="aulogo"; src="../../../public/assets/images/aulogo.png"></a>
+      <a style="text-decoration: none;" href="/">
+      <img class="aulogo"; src="/assets/images/aulogo.png"></a>
       <br> <br> <br>
 
         <ul class="nav">
           <li>
             <!--Dashboard-->
-            <a href="./admin_dashboard.php">
-              <span class="icon"><img class="not-active" src="../../../public/assets/images/four_squares.png" title="Dashboard"></span>
+            <a href="/">
+              <span class="icon"><img class="not-active" src="/assets/images/four_squares.png" title="Dashboard"></span>
             </a>
           </li>
           <li>
             <!--list-->
-            <a href="./list.php">
-              <span class="active"><img class="active-icon" src="../../../public/assets/images/list.png" title="Management"></span>
+            <a href="/?page=list">
+              <span class="active"><img class="active-icon" src="/assets/images/list.png" title="Management"></span>
             </a>
           </li>
           <li>
             <!--logout-->
-            <a href="/au-srms/public/logout.php">
-              <span class="icon"><img class="not-active" src="../../../public/assets/images/logout.png" title="Logout"></span>
+            <a href="/logout.php">
+              <span class="icon"><img class="not-active" src="/assets/images/logout.png" title="Logout"></span>
             </a>
           </li>
         </ul>
@@ -82,7 +82,7 @@ require_once "../../../database/config.php";
     </div>
 
   <div class="main">
-  <a href="./list.php"><img class="back-btn" src="../../../public/assets/images/left-arrow.png"></a>
+  <a href="/?page=list"><img class="back-btn" src="/assets/images/left-arrow.png"></a>
   <h1 class="inner-heading">Section Management</h1>
   <main>
     <div class="tables">
@@ -97,7 +97,7 @@ require_once "../../../database/config.php";
 
       <button onclick="loadStrand('HUMSS');" style=" margin-left: 2%; font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">HUMSS</button> <br>
 
-      <a href="addstudent.php"><button style=" font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">Add Student</button></a>
+      <a href="/?page=addstudent"><button style=" font-size: 10px; font-family: 'Public Sans', sans-serif;padding: 5px 10px; border-radius: 30px; background-color: #f4f4f4;">Add Student</button></a>
   <h1 id="section-title"></h1>
   <table id="table" class="table-bordered">
           <thead>

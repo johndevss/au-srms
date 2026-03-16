@@ -23,7 +23,7 @@ $account_id = mysqli_real_escape_string($conn, $_REQUEST['account_id']);
 	$subject_id = $_SESSION['subject_id'];
 
 	$query =  "INSERT INTO subjectcombination (`account_id`, `subject_id`) 
-              VALUES ('$account_id', '$subject_id')" or die(mysqli_error());	
+              VALUES ('$account_id', '$subject_id')" or die(mysqli_error($conn));	
 if (mysqli_query($conn, $query,)) 
 {	
 	header('location: class_list.php');

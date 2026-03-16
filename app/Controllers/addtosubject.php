@@ -158,7 +158,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           <tbody>
             <?php
             include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='1A'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='1A'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>
@@ -193,7 +193,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           <tbody>
             <?php
             include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='2A'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='2A'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>
@@ -228,7 +228,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
           <tbody>
             <?php
             include_once "database/config.php";
-              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='1P'") or die(mysqli_error());
+              $query = $conn->query("SELECT * FROM `users` WHERE stdnt_section='1P'") or die(mysqli_error($conn));
               while($f_query = $query->fetch_array()){
             ?>
             <tr>

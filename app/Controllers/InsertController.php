@@ -1,6 +1,5 @@
 <?php
-require_once "../../database/config.php";
-session_start();
+require_once __DIR__ . "/../../database/config.php";
 
 function insertFaculty() {
     global $conn;
@@ -40,7 +39,7 @@ function insertFaculty() {
         VALUES ('$randomID', '$lastName', '$firstName', '$middleName', '$sex', '$bday', '$motherName', '$motherContactNum', '$fatherName', '$fatherContactNum', '$advisory_class', '$subject_id', '$email', '$contact_num', '$strand', '$stdnt_strand', '$stdnt_section', '$stdnt_lrn', '$access_level', '$username', '$encrypted_password', '$user_systemStatus')";
 
     if (mysqli_query($conn, $sql)) {	
-        header('Location: ../Views/admin/teacher.php');
+        header('Location: /?page=teacher');
         exit;
     } else {
         echo "Error: Could not execute $sql. ".mysqli_error($conn);
@@ -96,7 +95,7 @@ function insertStudent() {
         VALUES ('$randomID', '$lastName', '$firstName', '$middleName', '$sex', '$stdnt_strand', '$stdnt_section', '$subjectsTakenStr', '$stdnt_lrn' , '$bday', '$email', '$contact_num', '$motherName', '$motherContactNum', '$fatherName', '$fatherContactNum', '$strand', '$advisory_class', '$subject_id', '$access_level', '$username', '$encrypted_password', '$user_systemStatus')";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: ../Views/admin/section.php');
+        header('Location: /?page=section');
         exit;
     } else {
         echo "Error: Could not execute query. ".mysqli_error($conn);
@@ -112,7 +111,7 @@ function insertSubject() {
     $sql = "INSERT INTO subjects (`subject_name`) VALUES ('$subject_name')";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: ../Views/admin/subjects.php');
+        header('Location: /?page=subjects');
         exit;
     } else {
         echo "Error: Could not execute query. ".mysqli_error($conn);
@@ -133,7 +132,7 @@ function userEditInsert() {
     $sql = "UPDATE users SET firstName='$firstName', middleName='$middleName', lastName='$lastName', contact_num='$contact_num', stdnt_strand='$stdnt_strand' WHERE user_id='$user_id'";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: ../Views/admin/section.php');
+        header('Location: /?page=section');
         exit;
     } else {
         echo "Error: Could not execute query. ".mysqli_error($conn);
@@ -154,7 +153,7 @@ function insertAnnouncement() {
     $sql = "INSERT INTO announcements (`announcement`) VALUES ('$announcement')";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: ../Views/admin/admin_dashboard.php');
+        header('Location: /');
         exit;
     } else {
         echo "Error: Could not execute query. " . mysqli_error($conn);
@@ -163,19 +162,12 @@ function insertAnnouncement() {
     mysqli_close($conn);
 }
 
-// Call if action is set
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if ($_POST['action'] === 'insertFaculty') {
-        insertFaculty();
-    } elseif ($_POST['action'] === 'insertStudent') {
-        insertStudent();
-    } elseif ($_POST['action'] === 'insertSubject') {
-        insertSubject();
-    } elseif ($_POST['action'] === 'userEditInsert') {
-        userEditInsert();
-    } elseif ($_POST['action'] === 'insertAnnouncement') {
-        insertAnnouncement();
-    }
+function handleInsert($action) {
+    if ($action === 'insertFaculty') insertFaculty();
+    elseif ($action === 'insertStudent') insertStudent();
+    elseif ($action === 'insertSubject') insertSubject();
+    elseif ($action === 'userEditInsert') userEditInsert();
+    elseif ($action === 'insertAnnouncement') insertAnnouncement();
 }
 
 ?>

@@ -1,6 +1,5 @@
 <?php
-	require_once "../../../database/config.php";
-	session_start();
+	require_once __DIR__ . "/../../../database/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,41 +9,41 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/au-srms/public/assets/css/addpersonnel.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/addpersonnel.css">
 	<title>Admin</title>
 </head>
 <body>
 	<div class="heading">
 		<header>
-			<img class="threeLines" src="/au-srms/public/assets/images/three_lines.png">
+			<img class="threeLines" src="/assets/images/three_lines.png">
 			<h1 class="text">Student Result Management System</h1>
 		</header>
     </div>
 
 	<div class="navigation">
 		<nav>
-			<a style="text-decoration: none;" href="./admin_dashboard.php">
-			<img class="aulogo"; src="/au-srms/public/assets/images/aulogo.png"></a>
+			<a style="text-decoration: none;" href="/">
+			<img class="aulogo"; src="/assets/images/aulogo.png"></a>
 			<br> <br> <br>
 
 		<ul class="nav">
 				<li>
 					<!--Dashboard-->
-					<a href="./admin_dashboard.php">
-						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/four_squares.png" title="Dashboard"></span>
+					<a href="/">
+						<span class="icon"><img class="not-active" src="/assets/images/four_squares.png" title="Dashboard"></span>
 					</a>
 				</li>
 				<li>
 					<!--list-->
-					<a href="./list.php">
-						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/list.png" title="Management"></span>
+					<a href="/?page=list">
+						<span class="icon"><img class="not-active" src="/assets/images/list.png" title="Management"></span>
 					</a>
 				</li>
 				<li>
 					<!--logout-->
-					<a href="/au-srms/public/logout.php">
-						<span class="icon"><img class="not-active" src="/au-srms/public/assets/images/logout.png" title="Logout"></span>
+					<a href="/logout.php">
+						<span class="icon"><img class="not-active" src="/assets/images/logout.png" title="Logout"></span>
 					</a>
 				</li>
 			</ul>
@@ -52,13 +51,13 @@
     </div>
     
     <div class="main">
-    <a href="teacher.php"><img class="back-btn" src="/au-srms/public/assets/images/left-arrow.png"></a>
-		<h1 class="inner-heading">Faculty Management <img class="back-btn" style="position: relative;" src="/au-srms/public/assets/images/right-arrow.png"> Faculty Registration</h1>
+    <a href="/?page=teacher"><img class="back-btn" src="/assets/images/left-arrow.png"></a>
+		<h1 class="inner-heading">Faculty Management <img class="back-btn" style="position: relative;" src="/assets/images/right-arrow.png"> Faculty Registration</h1>
 		<p>Please fill in the required information for registration.</p>
 
 		<div class="input-container">
 			<h1>Personal Information</h1>
-			<form action="../../../app/Controllers/InsertController.php" method="POST">
+			<form action="/" method="POST">
 				<input type="hidden" name="action" value="insertFaculty">
 				<label for="firstName">First Name:</label>
 				<input type="text" name="firstName" required=""> 
@@ -115,7 +114,7 @@
 				<select name="subject_id" id="subject" required="">
 					<option>---</option>
 					<?php
-					$query = $conn->query("SELECT * FROM `subjects`") or die(mysqli_error());
+					$query = $conn->query("SELECT * FROM `subjects`") or die(mysqli_error($conn));
 						while($f_query = $query->fetch_array()){
 					echo '<option value ='.$f_query['subject_id'].'>'.$f_query['subject_name'].'</option>';    
 					}    
