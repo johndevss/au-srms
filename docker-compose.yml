@@ -1,0 +1,55 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: au-srms-nginx
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php-fpm
+    networks:
+      - au-srms-network
+    restart: unless-stopped
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: au-srms-php
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=${DB_DATABASE:-au_srms}
+      - DB_USERNAME=${DB_USERNAME:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-root}
+    depends_on:
+      - mysql
+    networks:
+      - au-srms-network
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: au-srms-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-root}
+      - MYSQL_DATABASE=${DB_DATABASE:-au_srms}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./database/au-srms.sql:/docker-entrypoint-initdb.d/au-srms.sql
+    networks:
+      - au-srms-network
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+
+networks:
+  au-srms-network:
+    driver: bridge
