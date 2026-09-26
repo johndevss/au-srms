@@ -1,1 +1,18 @@
+# Environment & Secrets
 .env
+.env.local
+.env.*.local
+accounts.txt
+
+# Composer dependencies
+/vendor/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Database dumps with live data (if any are saved locally)
+*.sql.gz
+*.dump
