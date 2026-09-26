@@ -181,6 +181,18 @@ The repository provides a multi-container stack orchestrated via Docker Compose:
 
 ---
 
+### Default Demo Credentials
+
+The initial seed in `database/au-srms.sql` provides the following mock accounts:
+
+| Role | Username | Password |
+|---|---|---|
+| **Administrator** | `admin` | `admin123` |
+| **Faculty / Teacher** | `faculty` | `faculty123` |
+| **Student** | `student` | `student123` |
+
+---
+
 ## Project Structure
 
 ```text
