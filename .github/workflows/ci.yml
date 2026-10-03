@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  php-lint:
+    name: PHP Syntax & Lint Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysqli
+          tools: composer
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Lint PHP files
+        run: |
+          find app public database -name "*.php" -exec php -l {} +
+
+  docker-build:
+    name: Docker Build & Smoke Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create .env from .env.example
+        run: |
+          cp .env.example .env
+
+      - name: Build and Start Containers
+        run: |
+          docker compose up -d --build
+
+      - name: Wait for services to be ready
+        run: |
+          echo "Waiting for services to spin up..."
+          sleep 15
+          docker compose ps
+
+      - name: Check Container Health & HTTP Response
+        run: |
+          APP_PORT=8080
+          curl --fail --retry 5 --retry-connrefused --retry-delay 3 -I http://127.0.0.1:${APP_PORT} || (docker compose logs && exit 1)
+
+      - name: Dump Container Logs on Failure
+        if: failure()
+        run: |
+          docker compose logs
+
+      - name: Teardown Containers
+        if: always()
+        run: |
+          docker compose down -v
