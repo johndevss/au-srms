@@ -1,8 +1,17 @@
-FROM php:8.4-fpm
+FROM dunglas/frankenphp:php8.4
 
-# Install the mysqli extension required by the app's database layer
-RUN docker-php-ext-install mysqli
+# Install required PHP extensions (mysqli)
+RUN install-php-extensions mysqli
 
-WORKDIR /var/www/html
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-CMD ["php-fpm"]
+WORKDIR /app
+
+# Ensure FrankenPHP serves plain HTTP without TLS/Caddy features interfering
+ENV SERVER_NAME=":80"
+ENV FRANKENPHP_CONFIG="root /app/public"
+
+EXPOSE 80
+
+CMD ["frankenphp", "php-server", "-r", "/app/public", "-l", ":80"]
