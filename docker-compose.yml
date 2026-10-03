@@ -1,5 +1,6 @@
 services:
   app:
+    image: ghcr.io/johndevss/au-srms:latest
     build:
       context: .
       dockerfile: Dockerfile
