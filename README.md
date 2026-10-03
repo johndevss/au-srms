@@ -1,5 +1,11 @@
 # Student Result Management System
 
+[![CI](https://github.com/johndevss/au-srms/actions/workflows/ci.yml/badge.svg)](https://github.com/johndevss/au-srms/actions/workflows/ci.yml)
+[![Build and Push Docker Image](https://github.com/johndevss/au-srms/actions/workflows/deploy.yml/badge.svg)](https://github.com/johndevss/au-srms/actions/workflows/deploy.yml)
+![Docker Image](https://img.shields.io/badge/docker%20image-ghcr.io%2Fjohndevss%2Fau--srms-blue?logo=docker)
+![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php)
+![Server](https://img.shields.io/badge/Server-FrankenPHP-00ADD8)
+
 A web-based **Student Result Management System (SRMS)** developed as a Senior High School capstone project.  
 The system centralizes student academic records, allowing administrators and teachers to manage grades efficiently while enabling students to securely view their results online.
 
@@ -137,27 +143,25 @@ DB_PASSWORD=
 
 ---
 
-### Option 2: Docker Environment (Production / Containerized)
+### Option 2: Docker Environment (FrankenPHP + MySQL)
 
-The repository provides a multi-container stack orchestrated via Docker Compose:
-- **`nginx`**: Web server serving static assets and reverse-proxying PHP requests on port `8080` (and `443`).
-- **`php-fpm`**: PHP 8.4 FPM container running the application backend.
-- **`mysql`**: MySQL 8.0 database service automatically initialized with `database/au-srms.sql`.
+The repository provides a modern, containerized stack:
+- **`app`**: Standalone FrankenPHP (PHP 8.4) serving HTTP directly on `${APP_PORT:-8080}` (ready for centralized reverse-proxying with Nginx).
+- **`mysql`**: MySQL 8.0 database service automatically initialized and seeded with `database/au-srms.sql`.
 
 #### Steps to Run:
 
-1. **Configure Environment Variables (Optional):**
-   You can customize database credentials in your `.env` or use the defaults:
-   - `DB_DATABASE=au_srms`
-   - `DB_USERNAME=root`
-   - `DB_PASSWORD=root`
+1. **Configure Environment Variables:**
+   ```bash
+   cp .env.example .env
+   ```
 
 2. **Build and start containers:**
    ```bash
    docker compose up -d --build
    ```
 
-   *During the first startup, MySQL automatically loads and executes `database/au-srms.sql` to initialize tables and seed records.*
+   *During the first startup, composer dependencies are automatically installed, and MySQL automatically loads `database/au-srms.sql` to initialize tables and seed records.*
 
 3. **Verify running containers:**
    ```bash
@@ -178,6 +182,29 @@ The repository provides a multi-container stack orchestrated via Docker Compose:
    # Stop and delete database volumes (resets database)
    docker compose down -v
    ```
+
+---
+
+## CI/CD & Automated Deployment Architecture
+
+```mermaid
+flowchart LR
+    A["Git Push to main"] --> B["CI: PHP Syntax Check"]
+    A --> C["CI: Docker Build & Smoke Test"]
+    B & C --> D["CD: Build & Push to GHCR"]
+    D --> E["ghcr.io/johndevss/au-srms:latest"]
+    E -.->|Watchtower Auto-Pull| F["Target Server / Host"]
+```
+
+1. **Continuous Integration (`ci.yml`)**:
+   - Validates Composer dependencies and lockfile consistency.
+   - Runs static PHP syntax checks across all controllers, views, and database layers (`php -l`).
+   - Builds the Docker stack and performs automated HTTP smoke testing against the live container.
+2. **Continuous Deployment (`deploy.yml`)**:
+   - Builds a self-contained production image.
+   - Pushes the image to **GitHub Container Registry (GHCR)** tagged with `:latest` and the commit SHA.
+3. **Automated Server Updates (GitOps / Watchtower)**:
+   - Target host servers running [Watchtower](https://containrrr.dev/watchtower/) automatically detect new image tags in GHCR and rolling-restart the container with zero manual intervention.
 
 ---
 

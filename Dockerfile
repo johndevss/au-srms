@@ -16,7 +16,13 @@ WORKDIR /app
 ENV SERVER_NAME=":80"
 ENV FRANKENPHP_CONFIG="root /app/public"
 
+# Copy source code into container
+COPY . /app
+
+# Install composer dependencies for self-contained image
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
 EXPOSE 80
 
-# Auto-install vendor dependencies on container start if missing, then launch FrankenPHP
+# Auto-install vendor if missing (e.g. when mounting local dir in dev) and run FrankenPHP
 ENTRYPOINT ["sh", "-c", "if [ ! -f /app/vendor/autoload.php ]; then composer install --no-interaction --prefer-dist; fi && exec frankenphp php-server -r /app/public -l :80"]
